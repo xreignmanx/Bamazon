@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     host: "localhost",
   
 
-    port: 8889,
+    port: 3000,
   
     // Your username
     user: "root",
@@ -31,6 +31,7 @@ var connection = mysql.createConnection({
       console.log(res);
       runSearch()
     });
+  };
   
   // Create questions with inquirer
   function runSearch() {
@@ -55,35 +56,34 @@ var connection = mysql.createConnection({
         var item = "answer.itemID";
         var quantity = "answer.quantity";
         
-        connection.query("INSERT INTO auctions SET ?",
+        connection.query("INSERT INTO products SET ?",
           {
             item_name: answer.itemID,
-            category: answer.quantity
+            category: answer.quantity,
           },
+             console.log(answer),
+            updateProduct()
+          );
+        }
+      )};
 
 
       function updateProduct() {
-        console.log("Updating all Rocky Road quantities...\n");
+        console.log("Updating quantities...\n");
         var query = connection.query(
           "UPDATE products SET ? WHERE ?",
           [
             {
-              quantity: 100
+              stock_quantity: ""
             },
             {
-              flavor: "Rocky Road"
+              item_id: ""
             }
           ],
-          function(err, res) {
-            console.log(res.affectedRows + " products updated!\n");
-            // Call deleteProduct AFTER the UPDATE completes
-            deleteProduct();
-          }
-        );
-    })
-  })
-}
-}
+          function(err, res) 
+        )};
+  
+
       
   
   
