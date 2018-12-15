@@ -86,8 +86,8 @@ function runSearch() {
           for (var i = 0; i < res.length; i++) {
 
               if (purchaseProduct.quantity > res[i].stock_quantity) {
-                   console.log("Sorry! Not enough in stock. Please try again later.");
-                  listProducts();
+                   console.log("Insufficient qunatity! Please enter again.");
+                   runSearch();
               } else {
                 var newCount = (res[i].stock_quantity - purchaseProduct.quantity);
                 var itemPurchased = (purchaseProduct.inputId);
